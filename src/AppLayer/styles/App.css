@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 600px;
+  width: 700px;
+  grid-gap: 5px;
+  margin: auto;
+}
+.container div {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+input,
+button {
+  background: transparent;
+  font-size: 20pt;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+}
