@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import getWeatherInfo from "../UtilLayer/GetWeatherInfo";
-import { colors } from "../UtilLayer/BackgroundColors";
+import getWeatherInfo from "../../UtilLayer/GetWeatherInfo";
+import { colors } from "../../UtilLayer/BackgroundColors";
 import Header from "./Header";
 import DailyWeather from "./DailyWeather";
+import { ErrorBoundary } from "./ErrorBoundary";
 import "./styles/App.css";
 
 export default class Home extends Component {
@@ -19,7 +20,6 @@ export default class Home extends Component {
   }
   getcall = () => {
     getWeatherInfo(this.state.inputCity || "philadelphia").then(response => {
-      console.log(response);
       let weather = response.list
         ? response.list.map(item => {
             return {
@@ -49,7 +49,6 @@ export default class Home extends Component {
   };
 
   render() {
-    console.log(this.state.weather);
     return (
       <div style={{ backgroundColor: colors[this.state.colorIdx] }}>
         <input
@@ -60,16 +59,26 @@ export default class Home extends Component {
         <button aria-label="Search" onClick={this.getcall}>
           search
         </button>
-        <Header
-          city={
-            this.state.weather[0] ? this.state.weather[0].city : "philadelphia"
-          }
-          country={this.state.weather[0] ? this.state.weather[0].country : "US"}
-        />
+        <ErrorBoundary>
+          <Header
+            city={
+              this.state.weather[0]
+                ? this.state.weather[0].city
+                : "philadelphia"
+            }
+            country={
+              this.state.weather[0] ? this.state.weather[0].country : "US"
+            }
+          />
+        </ErrorBoundary>
         <div className="container">
           {this.state.weather &&
             this.state.weather.map((item, index) => (
-              <DailyWeather key={index} weather={item} />
+              <DailyWeather
+                key={index}
+                weather={item}
+                itemColor={(this.state.colorIdx % colors.length) + 1}
+              />
             ))}
         </div>
       </div>

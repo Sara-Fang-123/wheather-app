@@ -1,10 +1,11 @@
 import React from "react";
+import LazyLoad from "react-lazyload";
 import cloudy from "../svg/cloudy.svg";
 import sunny from "../svg/sunny.svg";
 import rainy from "../svg/rainy.svg";
 import snowy from "../svg/snowy.svg";
 import Moment from "moment";
-import { colors } from "../UtilLayer/BackgroundColors";
+import { colors } from "../../UtilLayer/BackgroundColors";
 
 export default function DailyWeather(props) {
   const dayTemp = Math.round(props.weather.dayWeather.temp.day * 1.8 + 32);
@@ -33,13 +34,14 @@ export default function DailyWeather(props) {
         break;
     }
   }
-
   return (
     <div
       className="daily-weather"
-      style={{ background: colors[Math.floor(Math.random() * colors.length)] }}
+      style={{ background: colors[props.itemColor] }}
     >
-      <img src={curIcon} />
+      <LazyLoad>
+        <img src={curIcon} />
+      </LazyLoad>
       <span>{dayTemp + "°F"}</span>
       <p>{curDate}</p>
       <p>{`${lowTemp}~${highTemp}` + "°F"}</p>
