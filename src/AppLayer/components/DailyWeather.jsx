@@ -1,9 +1,9 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
-import cloudy from "../svg/cloudy.svg";
-import sunny from "../svg/sunny.svg";
-import rainy from "../svg/rainy.svg";
-import snowy from "../svg/snowy.svg";
+import cloudy from "../../svg/cloudy.svg";
+import sunny from "../../svg/sunny.svg";
+import rainy from "../../svg/rainy.svg";
+import snowy from "../../svg/snowy.svg";
 import Moment from "moment";
 import { colors } from "../../UtilLayer/BackgroundColors";
 

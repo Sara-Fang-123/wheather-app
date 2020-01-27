@@ -4,7 +4,7 @@ import { colors } from "../../UtilLayer/BackgroundColors";
 import Header from "./Header";
 import DailyWeather from "./DailyWeather";
 import { ErrorBoundary } from "./ErrorBoundary";
-import "./styles/App.css";
+import "../styles/App.css";
 
 export default class Home extends Component {
   constructor(props) {
